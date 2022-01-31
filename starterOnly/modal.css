@@ -208,7 +208,7 @@ input {
   font-size: 20px;
   height: 48px;
 }
-.formData[data-error]::after {
+/*.formData[data-error]::after {
   content: attr(data-error);
   font-size: 0.4em;
   color: #e54858;
@@ -225,18 +225,23 @@ input {
 }
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
-}
-.tooltip {
+}*/
+
+.error {
   font-size: 0.4em;
-  color:#e54858;
-}
-.incorrect {
-    border-color: #e54858;
+  color: #e54858;
 }
 
-.incorrect:focus {
-    border-color: #e54858;
+.incorrect {
+  margin: 0;
+  padding: 8px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 20px;
+  height: 48px;
+  border-color: #e54858;
 }
+
 /* 
 input[data-error]::after {
     content: attr(data-error);
@@ -316,6 +321,7 @@ input[data-error]::after {
   opacity: 1;
   cursor: pointer;
   transform: scale(0.7);
+
 }
 .close:before,
 .close:after {
@@ -537,4 +543,3 @@ footer {
     opacity: 1;
   }
 }
-

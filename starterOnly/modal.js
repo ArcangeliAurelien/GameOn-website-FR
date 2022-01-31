@@ -25,47 +25,104 @@ function launchModal() {
 }
 
 // fermeture de la modale
+closeModalBtn.addEventListener("click", closeModal);
+
 function closeModal() {
   modalbg.style.display = "none";
 }
 
-closeModalBtn.addEventListener("click", closeModal);
-
-submit.addEventListener("click", validate);
-
 // Implémenter les entrées du formulaire
-const first = document.getElementById('first');
-const last = document.getElementById('last');
-const email = document.getElementById('email');
-const birthdate = document.getElementById('birthdate');
-const quantity = document.getElementById('quantity');
-const location1 = document.getElementById('location1');
-const location2 = document.getElementById('location2');
-const location3 = document.getElementById('location3');
-const location4 = document.getElementById('location4');
-const location5 = document.getElementById('location5');
-const location6 = document.getElementById('location6');
-const checkbox1 = document.getElementById('checkbox1');
 
+let myForm = document.getElementById('myForm');
+//Expression régulière:
+let myRegexName = /^[a-zA-Z-\s]+$/; 
+let myRegexEmail = /^([a-z0-9_\.-]+\@[\da-z\.-]+\.[a-z\.]{2,6})$/;
+let myRegexDate = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[1-9]|2[1-9])$/;
+let myRegexQuantity = /^[0-9]+$/;
 
-function validate() {
+myForm.addEventListener('submit', function (validate) {
+  //Vérification du Prénom
+  let checkFirst = document.getElementById('first');
 
-  //Masquer les messages
-  let tooltip = document.querySelectorAll('.tooltip');			//Sélectionne l'ensemble des éléments à cacher
-
-  for (var i = 0; i < tooltip.length; i++) {						//La méthode utilisée pour cacher les messages d'erreur
-    tooltip[i].style.display = 'none';
+  if(checkFirst.value == "" || checkFirst.value.length < 2) {
+    let myErrorFirst = document.getElementById('errorFirst');
+    myErrorFirst.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du prénom";
+    checkFirst.className = "incorrect";
+    validate.preventDefault();
+  }else if(myRegexName.test(checkFirst.value) == false) {
+    myErrorFirst.innerHTML = "Les chiffres ne sont pas autorisé";
+    checkFirst.className = "incorrect";
+    validate.preventDefault();
+  } else {
+    console.log('OK');
+    myErrorFirst.style.display = 'none';
+    return true;
   }
 
+  //Vérification du Nom
+  let checkLast = document.getElementById('last');
 
-  //Vérifier le prénom
-  if (first.value.length < 2 || first.value == "") {
-    tooltip[0].style.display = 'inline';
-    prenom.className = "incorrect";
+  if(checkLast.value == "" || checkLast.value.length < 2) {
+    let myErrorLast = document.getElementById('errorLast');
+    myErrorLast.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom";
+    checkLast.className = "incorrect";
+    validate.preventDefault();
+  }else if(myRegexName.test(checkLast.value) == false) {
+    myErrorLast.innerHTML = "Les chiffres ne sont pas autorisé";
+    checkLast.className = "incorrect";
+    validate.preventDefault();
   }else {
-    tooltip[0].style.display = 'none';
-    prenom.className = "correct";
+    console.log('OK');
+    return true;
   }
 
+  //Vérification de l'Email
+  let checkEmail = document.getElementById('email');
 
-}
+  if(checkEmail.value == "") {
+    let myErrorEmail = document.getElementById('errorEmail');
+    myErrorEmail.innerHTML = "Veuillez entrer une adresse mail valide";
+    checkEmail.className = "incorrect";
+    validate.preventDefault();
+  }else if(myRegexEmail.test(checkEmail.value) == false) {
+    myErrorEmail.innerHTML = "Ceci n'est pas une adresse mail";
+    checkEmail.className = "incorrect";
+    validate.preventDefault();
+  }else {
+    console.log('OK');
+    return true;
+  }
+
+  //Vérification de la date de naissance
+  let checkBirthdate = document.getElementById('birthdate');
+
+  if(checkBirthdate.test(checkBirthdate.value) == false) {
+    let myErrorBirthdate = document.getElementById('ErrorBirthdate');
+    myErrorBirthdate.innerHTML = "Vous devez entrer votre date de naissance";
+    checkBirthdate.className = "incorrect";
+    validate.preventDefault();
+  }else {
+    console.log('OK');
+    return true;
+  }
+
+  //Vérification du nombre de tournoi participer
+  let checkQuantity = document.getElementById('quantity');
+
+  if(checkQuantity >= 0 && checkQuantity <= 99) {
+    console.log('OK');
+    return true;
+  }else if(checkQuantity.test(checkQuantity.value) == false) {
+    let myErrorQuantity = document.getElementById('ErrorQuantity');
+    myErrorQuantity.innerHTML = "Vous devez utiliser des nombres";
+    checkQuantity.className = "incorrect";
+    validate.preventDefault();
+  }else if(checkQuantity == "") {
+    myErrorQuantity.innerHTML = "Vous devez indiquer si vous avez déjà participé à un tournoi";
+    checkQuantity.className = "incorrect";
+  }
+
+  //Vérification checkbox
+
+
+})
