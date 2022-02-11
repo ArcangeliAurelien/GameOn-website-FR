@@ -170,7 +170,7 @@ main {
 }
 
 .content {
-  margin: 5% auto;
+  margin: 1.5% auto;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
@@ -208,6 +208,41 @@ input {
   font-size: 20px;
   height: 48px;
 }
+
+/*----------------------------------------------------*/
+
+.error {
+  color: #e54858;
+  font-size: 0.4em;
+  display: block;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  text-align: left;
+  line-height: 0.3;
+  transition: 0.3s;
+}
+
+.incorrect {
+  border: 2px solid #e54858;
+  margin: 0;
+  padding: 8px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 20px;
+  height: 48px;
+}
+
+.correct {
+  margin: 0;
+  padding: 8px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 20px;
+  height: 48px;
+}
+
+/*----------------------------------------------------*/
+
 /*.formData[data-error]::after {
   content: attr(data-error);
   font-size: 0.4em;
@@ -226,22 +261,6 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }*/
-
-.error {
-  font-size: 0.4em;
-  color: #e54858;
-}
-
-.incorrect {
-  margin: 0;
-  padding: 8px;
-  width: 100%;
-  border-radius: 8px;
-  font-size: 20px;
-  height: 48px;
-  border-color: #e54858;
-}
-
 /* 
 input[data-error]::after {
     content: attr(data-error);
@@ -321,7 +340,6 @@ input[data-error]::after {
   opacity: 1;
   cursor: pointer;
   transform: scale(0.7);
-
 }
 .close:before,
 .close:after {
@@ -542,4 +560,75 @@ footer {
   to {
     opacity: 1;
   }
+}
+
+/*----------------------------------------------------*/
+
+@keyframes modalclose {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}
+
+.ThxModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(26, 39, 156, 0.4);
+}
+
+.ThxContent {
+  margin: 1.5% auto;
+  width: 100%;
+  max-width: 500px;
+  animation: modalopen 0.8s;
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  padding-top: 10px;
+  height: 95%;
+}
+
+.ThxContent h2 {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.body-modal {
+  padding: 15px 8%;
+  margin: 15px auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-close {
+  background: #fe142f;
+  display: block;
+  margin: 25px auto;
+  border-radius: 7px;
+  font-size: 1rem;
+  padding: 12px 82px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  text-align: center;
+}
+.btn-close:hover {
+  background: #3876ac;;
 }

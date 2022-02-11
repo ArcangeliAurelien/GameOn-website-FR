@@ -1,7 +1,7 @@
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
-    x.className += " responsive";
+    x.className += "responsive";
   } else {
     x.className = "topnav";
   }
@@ -11,13 +11,17 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
+const ThxModal = document.querySelector(".ThxModal");
+const content = document.querySelector(".content");
 
 const closeModalBtn = document.querySelector("#closeModal");
+const closeThxModalBtn = document.querySelector("#closeThxModal");
+const closeBtn = document.querySelector(".btn-close");
 
 const submit = document.querySelector("#submit");
 
 // launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal)); //Appel de la modale formulaire
 
 // launch modal form
 function launchModal() {
@@ -25,137 +29,144 @@ function launchModal() {
 }
 
 // fermeture de la modale
-closeModalBtn.addEventListener("click", closeModal);
+closeModalBtn.addEventListener("click", closeModal);        //fermeture de la modale formulaire
+closeThxModalBtn.addEventListener("click", closeThxModal);  //fermeture de la modale de remerciement
+closeBtn.addEventListener("click", closeModalThx);          //fermeture avec le bouton de la modale de remerciement
 
 function closeModal() {
   modalbg.style.display = "none";
 }
+function closeThxModal() {
+  ThxModal.style.display = "none";
+}
+function closeModalThx() {
+  ThxModal.style.display = "none";
+}
 
 // Implémenter les entrées du formulaire
-
 let myForm = document.getElementById('myForm');
 myForm.addEventListener('submit', validate);
 
-// Expression régulière:
-let myRegexName = /^[a-zA-Z-\s]+$/;
+
+//Expression régulière:
+let myRegexName = /^[a-zA-Zàáâäçèéêëìíîïñòóôöùúûü-\s]+$/;
 let myRegexEmail = /^([a-z0-9_\.-]+\@[\da-z\.-]+\.[a-z\.]{2,6})$/;
 let myRegexDate = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
 let myRegexQuantity = /^[0-9]+$/;
 
-// Vérification du Prénom
+
+
 function ValidFirst() {
+  //Vérification du Prénom
   let checkFirst = document.getElementById('first');
-  let myErrorFirst = document.getElementById('errorFirst');
+  let erreurFirst = document.getElementById('erreurFirst');
 
   if (checkFirst.value == "" || checkFirst.value.length < 2) {
-    myErrorFirst.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du prénom";
+
+    erreurFirst.innerHTML = "Veuillez entrer 2 caractères ou plus";
     checkFirst.className = "incorrect";
-    console.log('Prénom: ERREUR');
-    e.preventDefault();
+    return false;
   } else if (myRegexName.test(checkFirst.value) == false) {
-    myErrorFirst.innerHTML = "Les chiffres ne sont pas autorisé";
+
+    erreurFirst.innerHTML = "Les chiffres ne sont pas autorisé";
     checkFirst.className = "incorrect";
-    console.log('Prénom: ERREUR');
-    e.preventDefault();
+    return false;
   } else {
-    myErrorFirst.innerHTML = "";
-    checkFirst.className = "";
-    console.log('Prénom: OK');
+    erreurFirst.innerHTML = "";
+    checkFirst.className = "correct";
     return true;
-  }
+  };
 }
 
-// Vérification du Nom
+
 function ValidLast() {
+  //Vérification du Nom
   let checkLast = document.getElementById('last');
-  let myErrorLast = document.getElementById('errorLast');
+  let erreurLast = document.getElementById('erreurLast');
 
   if (checkLast.value == "" || checkLast.value.length < 2) {
-    myErrorLast.innerHTML = "Veuillez entrer 2 caractères ou plus pour le champ du nom";
+
+    erreurLast.innerHTML = "Veuillez entrer 2 caractères ou plus";
     checkLast.className = "incorrect";
-    console.log('Nom: ERREUR');
-    e.preventDefault();
+    return false;
   } else if (myRegexName.test(checkLast.value) == false) {
-    myErrorLast.innerHTML = "Les chiffres ne sont pas autorisé";
+
+    erreurLast.innerHTML = "Les chiffres ne sont pas autorisé";
     checkLast.className = "incorrect";
-    console.log('Nom: ERREUR');
-    e.preventDefault();
+    return false;
   } else {
-    myErrorLast.innerHTML = "";
-    checkLast.className = "";
-    console.log('Nom: OK');
+    erreurLast.innerHTML = "";
+    checkLast.className = "correct";
     return true;
-  }
+  };
 }
 
-// Vérification de l'Email
-function ValidEmail(e) {
+function ValidEmail() {
+  //Vérification de l'Email
   let checkEmail = document.getElementById('email');
-  let myErrorEmail = document.getElementById('errorEmail');
+  let erreurEmail = document.getElementById('erreurEmail');
 
   if (checkEmail.value == "") {
-    myErrorEmail.innerHTML = "Veuillez entrer une adresse mail valide";
+
+    erreurEmail.innerHTML = "Veuillez entrer une adresse mail valide";
     checkEmail.className = "incorrect";
-    console.log('Email: ERREUR');
-    e.preventDefault();
+    return false;
   } else if (myRegexEmail.test(checkEmail.value) == false) {
-    myErrorEmail.innerHTML = "Ceci n'est pas une adresse mail";
+
+    erreurEmail.innerHTML = "Ceci n'est pas une adresse mail";
     checkEmail.className = "incorrect";
-    console.log('Email: ERREUR');
-    e.preventDefault();
+    return false;
   } else {
-    myErrorEmail.innerHTML =
-      checkEmail.className = ""
-    console.log('Email: OK');
+    erreurEmail.innerHTML = "";
+    checkEmail.className = "correct";
     return true;
-  }
+  };
 }
 
-// Vérification de la date de naissance
 function ValidBirthdate() {
+  //Vérification de la date de naissance
   let checkBirthdate = document.getElementById('birthdate');
-  let myErrorBirthdate = document.getElementById('errorBirthdate');
+  let erreurBirthdate = document.getElementById('erreurBirthdate');
 
   if (checkBirthdate.value == "" && myRegexDate.test(checkBirthdate.value) == false) {
-    myErrorBirthdate.innerHTML = "Vous devez entrer votre date de naissance";
+
+    erreurBirthdate.innerHTML = "Vous devez entrer votre date de naissance";
     checkBirthdate.className = "incorrect";
-    console.log('Birthdate: ERREUR');
-    e.preventDefault();
+    return false;
+
   } else {
-    myErrorBirthdate.innerHTML = "";
-    checkBirthdate.className = "";
-    console.log('Birthdate: OK');
+    erreurBirthdate.innerHTML = "";
+    checkBirthdate.className = "correct";
     return true;
-  }
+  };
 }
 
-// Vérification du nombre de tournoi participer
 function ValidQuantity() {
+  //Vérification du nombre de tournoi participer
   let checkQuantity = document.getElementById('quantity');
-  let myErrorQuantity = document.getElementById('errorQuantity');
+  let erreurQuantity = document.getElementById('erreurQuantity');
 
   if (myRegexQuantity.test(checkQuantity.value) == false) {
-    myErrorQuantity.innerHTML = "Vous devez utiliser des nombres";
+
+    erreurQuantity.innerHTML = "Vous devez utiliser des nombres";
     checkQuantity.className = "incorrect";
-    console.log('Quantity: ERREUR');
-    e.preventDefault();
+    return false;
   } else if (checkQuantity == "") {
-    myErrorQuantity.innerHTML = "Indiquez le nombre de tournoi déjà participé";
+
+    erreurQuantity.innerHTML = "Indiquez le nombre de tournoi déjà participé";
     checkQuantity.className = "incorrect";
-    console.log('Quantity: ERREUR');
-    e.preventDefault();
+    return false;
   } else {
-    myErrorQuantity.innerHTML = "";
-    checkQuantity.className = "";
-    console.log('Quantity: OK');
+    erreurQuantity.innerHTML = "";
+    checkQuantity.className = "correct";
     return true;
-  }
+  };
 }
 
-// Vérification des locations
 function ValidLocation() {
+  //Vérification des locations
   let checkLocations = document.getElementsByName('location');
-  let myErrorLocation = document.getElementById('errorLocation');
+  let erreurLocation = document.getElementById('erreurLocation');
 
   if (checkLocations[0].checked
     || checkLocations[1].checked
@@ -163,38 +174,45 @@ function ValidLocation() {
     || checkLocations[3].checked
     || checkLocations[4].checked
     || checkLocations[5].checked) {
-    myErrorLocation.innerHTML = "";
-    checkLocations.className == "";
-    console.log('Location: OK');
+    erreurLocation.innerHTML = "";
+    checkLocations.className == "checkbox-input checkbox-input:checked";
     return true;
   } else {
-    myErrorLocation.innerHTML = "Vous devez sélectionné une ville";
+
+    erreurLocation.innerHTML = "Vous devez sélectionné une ville";
     checkLocations.className = "incorrect";
-    console.log('Location: ERREUR');
-    e.preventDefault();
+    return false;
   }
 }
 
-// Vérification des conditions d'utilisation
 function ValidCheckbox() {
+  //Vérification des conditions d'utilisation
   let checkbox = document.getElementById('checkbox1');
-  let myErrorCheckbox = document.getElementById('errorCheckbox');
+  let erreurCheckbox = document.getElementById('erreurCheckbox');
 
   if (checkbox.checked) {
-    myErrorCheckbox.innerHTML = "";
-    checkbox.className = ""
-    console.log('Checkbox: OK');
+    erreurCheckbox.innerHTML = "";
+    checkbox.className = "checkbox-input"
     return true;
   } else {
-    myErrorCheckbox.innerHTML = "Vous devez accepté les conditions d'utilisation";
-    checkbox.className = "incorrect";
-    console.log('Location: ERREUR');
-    e.preventDefault();
+
+    erreurCheckbox.innerHTML = "Vous devez accepté les conditions d'utilisation";
+    checkbox.className = "";
+    return false;
   }
 }
 
-// Validation du formulaire
-function validate() {
+function validate(e) {
+  e.preventDefault();
+  //Validation formulaire
+  console.log('first', ValidFirst());
+  console.log('last', ValidLast());
+  console.log('email', ValidEmail());
+  console.log('birthdate', ValidBirthdate());
+  console.log('Quantity', ValidQuantity());
+  console.log('Location', ValidLocation());
+  console.log('Checkbox', ValidCheckbox());
+
   if (ValidFirst()
     && ValidLast()
     && ValidEmail()
@@ -202,7 +220,8 @@ function validate() {
     && ValidQuantity()
     && ValidLocation()
     && ValidCheckbox()) {
-    alert('Formulaire OK');
+    ThxModal.style.display = "block";
+    modalbg.style.display = "none";
     myForm.reset();
-  }
+  };
 }
