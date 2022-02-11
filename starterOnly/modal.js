@@ -62,12 +62,10 @@ function ValidFirst() {
   let erreurFirst = document.getElementById('erreurFirst');
 
   if (checkFirst.value == "" || checkFirst.value.length < 2) {
-
     erreurFirst.innerHTML = "Veuillez entrer 2 caractères ou plus";
     checkFirst.className = "incorrect";
     return false;
   } else if (myRegexName.test(checkFirst.value) == false) {
-
     erreurFirst.innerHTML = "Les chiffres ne sont pas autorisé";
     checkFirst.className = "incorrect";
     return false;
@@ -85,12 +83,10 @@ function ValidLast() {
   let erreurLast = document.getElementById('erreurLast');
 
   if (checkLast.value == "" || checkLast.value.length < 2) {
-
     erreurLast.innerHTML = "Veuillez entrer 2 caractères ou plus";
     checkLast.className = "incorrect";
     return false;
   } else if (myRegexName.test(checkLast.value) == false) {
-
     erreurLast.innerHTML = "Les chiffres ne sont pas autorisé";
     checkLast.className = "incorrect";
     return false;
@@ -107,12 +103,10 @@ function ValidEmail() {
   let erreurEmail = document.getElementById('erreurEmail');
 
   if (checkEmail.value == "") {
-
     erreurEmail.innerHTML = "Veuillez entrer une adresse mail valide";
     checkEmail.className = "incorrect";
     return false;
   } else if (myRegexEmail.test(checkEmail.value) == false) {
-
     erreurEmail.innerHTML = "Ceci n'est pas une adresse mail";
     checkEmail.className = "incorrect";
     return false;
@@ -125,20 +119,29 @@ function ValidEmail() {
 
 function ValidBirthdate() {
   //Vérification de la date de naissance
-  let checkBirthdate = document.getElementById('birthdate');
+  var dateString = document.getElementById("birthdate").value;
   let erreurBirthdate = document.getElementById('erreurBirthdate');
+  if (dateString != "") {
+    var today = new Date();
+    var checkBirthdate = new Date(dateString); 
+    var age = today.getFullYear() - checkBirthdate.getFullYear();
 
-  if (checkBirthdate.value == "" && myRegexDate.test(checkBirthdate.value) == false) {
-
+    if (age < 18 || age > 100) {
+      erreurBirthdate.innerHTML = "Vous devez être majeur";
+      checkBirthdate.className = "incorrect";
+      return false;
+    }
+    else {
+      erreurBirthdate.innerHTML = "";
+      checkBirthdate.className = "correct";
+      return true;
+    }
+  }
+  else {
     erreurBirthdate.innerHTML = "Vous devez entrer votre date de naissance";
     checkBirthdate.className = "incorrect";
     return false;
-
-  } else {
-    erreurBirthdate.innerHTML = "";
-    checkBirthdate.className = "correct";
-    return true;
-  };
+  }
 }
 
 function ValidQuantity() {
@@ -147,12 +150,10 @@ function ValidQuantity() {
   let erreurQuantity = document.getElementById('erreurQuantity');
 
   if (myRegexQuantity.test(checkQuantity.value) == false) {
-
     erreurQuantity.innerHTML = "Vous devez utiliser des nombres";
     checkQuantity.className = "incorrect";
     return false;
   } else if (checkQuantity == "") {
-
     erreurQuantity.innerHTML = "Indiquez le nombre de tournoi déjà participé";
     checkQuantity.className = "incorrect";
     return false;
@@ -178,7 +179,6 @@ function ValidLocation() {
     checkLocations.className == "checkbox-input checkbox-input:checked";
     return true;
   } else {
-
     erreurLocation.innerHTML = "Vous devez sélectionné une ville";
     checkLocations.className = "incorrect";
     return false;
@@ -195,7 +195,6 @@ function ValidCheckbox() {
     checkbox.className = "checkbox-input"
     return true;
   } else {
-
     erreurCheckbox.innerHTML = "Vous devez accepté les conditions d'utilisation";
     checkbox.className = "";
     return false;
