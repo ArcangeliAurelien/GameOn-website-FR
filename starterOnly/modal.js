@@ -1,7 +1,8 @@
+// NavBar
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
-    x.className += "responsive";
+    x.className += " responsive";
   } else {
     x.className = "topnav";
   }
@@ -119,27 +120,28 @@ function ValidEmail() {
 
 function ValidBirthdate() {
   //Vérification de la date de naissance
-  var dateString = document.getElementById("birthdate").value;
+  let Birthdate = document.getElementById("birthdate");
+  let dateString = Birthdate.value;
   let erreurBirthdate = document.getElementById('erreurBirthdate');
   if (dateString != "") {
-    var today = new Date();
-    var checkBirthdate = new Date(dateString); 
-    var age = today.getFullYear() - checkBirthdate.getFullYear();
+    let today = new Date();
+    let checkBirthdate = new Date(dateString); 
+    let age = today.getFullYear() - checkBirthdate.getFullYear();
 
     if (age < 18 || age > 100) {
       erreurBirthdate.innerHTML = "Vous devez être majeur";
-      checkBirthdate.className = "incorrect";
+      Birthdate.className = "incorrect";
       return false;
     }
     else {
       erreurBirthdate.innerHTML = "";
-      checkBirthdate.className = "correct";
+      Birthdate.className = "correct";
       return true;
     }
   }
   else {
     erreurBirthdate.innerHTML = "Vous devez entrer votre date de naissance";
-    checkBirthdate.className = "incorrect";
+    Birthdate.className = "incorrect";
     return false;
   }
 }
@@ -196,7 +198,7 @@ function ValidCheckbox() {
     return true;
   } else {
     erreurCheckbox.innerHTML = "Vous devez accepté les conditions d'utilisation";
-    checkbox.className = "";
+    checkbox.className = "checkbox-input";
     return false;
   }
 }

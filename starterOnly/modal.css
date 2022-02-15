@@ -68,39 +68,6 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
-
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-} 
-
 main {
   font-size: 130%;
   font-weight: bolder;
@@ -368,6 +335,10 @@ input[data-error]::after {
   cursor: pointer;
   border: 0;
 }
+.btn-submit:hover {
+  background: #3876ac;
+}
+
 /* custom select styles */
 .custom-select {
   position: relative;
@@ -513,7 +484,62 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
-@media screen and (max-width: 800px) {
+
+/* Partie responsive */
+
+@media screen and (max-width: 1040px) {
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+    color: #ff0000;
+  }
+  .topnav a.icon:hover {
+    color: #ffffff;
+  }
+}
+
+@media screen and (max-width: 1040px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: right;
+  }
+  .topnav.responsive .menu {
+    margin-top: 55px;
+  }
+  img {
+    width: 200px;
+    padding-top: 15px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: right;
+  }
+
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -530,8 +556,9 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
-    white-space: normal;
+    font-size: 3.5rem;
+    white-space: nowrap;
+    font-weight: bold;
   }
   .hero-text {
     width: unset;
@@ -552,6 +579,59 @@ footer {
   }
 }
 
+@media screen and (max-width: 768px) {
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .hero-text {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+    /*margin-top: -15px;*/
+  }
+  .hero-headline {
+    font-size: 3rem;
+  }
+  .content {
+    margin-top: 100px;
+  }
+  main .ThxContent {
+    margin-top: 100px;
+  }
+  .hero-headline {
+    font-size: 3rem;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+  .hero-text {
+    font-size: 1.1rem;
+  }
+}
+
+/*----------------------------------------------------*/
+
 @keyframes modalopen {
   from {
     opacity: 0;
@@ -564,17 +644,7 @@ footer {
 
 /*----------------------------------------------------*/
 
-@keyframes modalclose {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-100px);
-  }
-}
+/* Modale de remerciement */
 
 .ThxModal {
   display: none;
@@ -630,5 +700,5 @@ footer {
   text-align: center;
 }
 .btn-close:hover {
-  background: #3876ac;;
+  background: #3876ac;
 }
